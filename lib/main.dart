@@ -43,7 +43,26 @@ class MyHomePage extends StatefulWidget {
       "Name": "",
       "Url":
           "https://qiyigou.koalafield.com/wechat/couponhome?t=D521CBF10FB39044FC0B3730D0203B28"
-    }
+    },
+    {
+      "Img":
+          "http://au.kiigou.com//UploadFile/2018052513/S4gmbTS1JUWuTLi9Vl61vg.jpg",
+      "Name": "",
+      "Url": "https://qiyigou.koalafield.com/Wechat/Detail/13119"
+    },
+    {
+      "Img":
+          "http://au.kiigou.com//UploadFile/2018052513/DbU5RmnNXkGevF_I4r9ZDQ.jpg",
+      "Name": "",
+      "Url": "http://t.koalafield.com/?KbMadF8QyEexJExjMVdnmQ"
+    },
+    {
+      "Img":
+          "http://au.kiigou.com//UploadFile/2018052513/xyw2uoH8VEOhC-tU8bZP3A.jpg",
+      "Name": "",
+      "Url":
+          "https://qiyigou.koalafield.com/wechat/couponhome?t=D521CBF10FB39044FC0B3730D0203B28"
+    },
   ];
 
   static const List<Map> category = <Map>[
@@ -113,6 +132,83 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+class MySwiperPaginationBuilder extends SwiperPlugin {
+  ///color when current index,if set null , will be Theme.of(context).primaryColor
+  final Color activeColor;
+
+  ///,if set null , will be Theme.of(context).scaffoldBackgroundColor
+  final Color color;
+
+  ///Size of the rect when activate
+  final Size activeSize;
+
+  ///Size of the rect
+  final Size size;
+
+  /// Space between rects
+  final double space;
+
+  final Key key;
+
+  ///Size of the rect
+  final double radius;
+
+  const MySwiperPaginationBuilder(
+      {this.activeColor,
+      this.color,
+      this.key,
+      this.radius: 5.0,
+      this.size: const Size(10.0, 5.0),
+      this.activeSize: const Size(10.0, 5.0),
+      this.space: 3.0});
+
+  @override
+  Widget build(BuildContext context, SwiperPluginConfig config) {
+    ThemeData themeData = Theme.of(context);
+    Color activeColor = this.activeColor ?? themeData.primaryColor;
+    Color color = this.color ?? themeData.scaffoldBackgroundColor;
+
+    List<Widget> list = [];
+
+    if (config.itemCount > 20) {
+      print(
+          "The itemCount is too big, we suggest use FractionPaginationBuilder instead of DotSwiperPaginationBuilder in this sitituation");
+    }
+
+    int itemCount = config.itemCount;
+    int activeIndex = config.activeIndex;
+
+    for (int i = 0; i < itemCount; ++i) {
+      bool active = i == activeIndex;
+      Size size = active ? this.activeSize : this.size;
+      list.add(Container(
+        decoration: BoxDecoration(
+          color: active ? activeColor : color,
+          borderRadius: BorderRadius.circular(this.radius),
+        ),
+        width: size.width,
+        height: size.height,
+        key: Key("pagination_$i"),
+        margin: EdgeInsets.all(this.space),
+      ));
+    }
+
+    if (config.scrollDirection == Axis.vertical) {
+      return new Column(
+        key: key,
+        mainAxisSize: MainAxisSize.min,
+        children: list,
+      );
+    } else {
+      return new Row(
+        key: key,
+        mainAxisSize: MainAxisSize.min,
+        children: list,
+      );
+    }
+  }
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -126,11 +222,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   itemBuilder: (ctx, index) =>
                       new Image.network(MyHomePage.banner[index]["Img"]),
                   itemCount: MyHomePage.banner.length,
+                  pagination: new SwiperPagination(
+                      margin: const EdgeInsets.all(15.0),
+                      builder: MySwiperPaginationBuilder(
+                        size: Size(8.0, 3.0),
+                        activeSize: Size(12.0, 3.0),
+                        radius: 3.0,
+                        color: Color.fromRGBO(255, 255, 255, 0.2),
+                        activeColor: const Color(0XFFFFFFFF),
+                      )),
                 )),
             Container(
               width: double.infinity,
-              height: 164.00,
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
+              height: 170.00,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -141,6 +245,15 @@ class _MyHomePageState extends State<MyHomePage> {
               child: new Swiper(
                 outer: false,
                 loop: false,
+                itemCount: 2,
+                pagination: new SwiperPagination(
+                    margin: const EdgeInsets.all(4.0),
+                    builder: MySwiperPaginationBuilder(
+                      size: Size(5.0, 5.0),
+                      activeSize: Size(10.0, 5.0),
+                      color: Color.fromRGBO(0, 0, 0, 0.2),
+                      activeColor: const Color(0XFFe93b3d),
+                    )),
                 itemBuilder: (c, i) {
                   return Container(
                     padding: const EdgeInsets.fromLTRB(12.0, 20.0, 12.0, 0.0),
@@ -170,7 +283,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   );
                 },
-                itemCount: 2,
               ),
             ),
             SingleChildScrollView(
@@ -273,7 +385,8 @@ class _CardState extends State<Card> {
                 ),
                 Expanded(
                   flex: 1,
-                  child: new Text("测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试",
+                  child: new Text(
+                      "测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试",
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
