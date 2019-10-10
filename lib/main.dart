@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 void main() => runApp(App());
@@ -326,6 +328,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+            ActivityPanelTitle(),
           ],
         ));
   }
@@ -402,6 +405,109 @@ class _CardState extends State<Card> {
           )
         ],
       ),
+    );
+  }
+}
+
+class ActivityPanelTitle extends StatefulWidget {
+  final String word1;
+  final String word2;
+  final String word3;
+
+  ActivityPanelTitle({Key key, this.word1, this.word2, this.word3})
+      : super(key: key);
+
+  @override
+  _ActivityPanelTitle createState() => _ActivityPanelTitle();
+}
+
+class _ActivityPanelTitle extends State<ActivityPanelTitle> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 15.0),
+      margin: EdgeInsets.only(top: 15.0),
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text("购",
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xFF333333))),
+                  Container(
+                      width: 3.0,
+                      height: 3.0,
+                      margin: EdgeInsets.all(5.0),
+                      decoration: BoxDecoration(
+                          color: Color(0xFF333333),
+                          borderRadius: BorderRadius.circular(3.0))),
+                  Text("特色",
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xFF39aaa8))),
+                ],
+              ),
+              Text("F E A T U R E D",
+                  style:
+                      TextStyle(fontSize: 10.0, color: const Color(0xFF39aaa8)))
+            ],
+          ),
+          Positioned(
+            right: 0.0,
+            child: Container(
+                padding: EdgeInsets.all(15.0),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(right: 5.0),
+                      child: Text("更多",
+                          style: TextStyle(
+                              color: Color(0xFFAFAFAF), fontSize: 12.0)),
+                    ),
+                    Transform.translate(
+                        offset: Offset(0.0, -1.5),
+                        child: Container(
+                          width: 7.0,
+                          height: 7.0,
+                          transform: Matrix4.rotationZ(pi / 4),
+                          decoration: BoxDecoration(
+                              border: Border(
+                            top: BorderSide(
+                                width: 1.0, color: Color(0xFFAFAFAF)),
+                            right: BorderSide(
+                                width: 1.0, color: Color(0xFFAFAFAF)),
+                          )),
+                        ))
+                  ],
+                )),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ActivityPanel extends StatefulWidget {
+  ActivityPanel({Key key}) : super(key: key);
+
+  @override
+  _ActivityPanel createState() => _ActivityPanel();
+}
+
+class _ActivityPanel extends State<ActivityPanel> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[],
     );
   }
 }
