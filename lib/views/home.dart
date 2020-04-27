@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_shop/widget/swiper_pagination.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:flutter_shop/widgets/swiper_pagination.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -98,6 +99,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 1;
+
+//  Provider a= Provider();
 
   @override
   Widget build(BuildContext context) {

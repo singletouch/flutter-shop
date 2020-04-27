@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'home/home.dart';
+import 'package:flutter_shop/views/share.dart';
+import 'home.dart';
 
 class MainWrapper extends StatefulWidget {
   MainWrapper({Key key}) : super(key: key);
@@ -19,7 +20,7 @@ class _MainWrapper extends State<MainWrapper> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _currentIndex);
-    pages = [HomePage(), HomePage(), HomePage()];
+    pages = [SharePage(), HomePage(), HomePage()];
   }
 
   void onTap(int index) {
