@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_shop/views/share/InheritWidgetDemo.dart';
+import 'package:flutter_shop/views/share/ProviderDemo.dart';
 import 'package:flutter_shop/widget/swiper_pagination.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
@@ -15,22 +16,29 @@ class SharePage extends StatefulWidget {
   _SharePageState createState() => _SharePageState();
 }
 
-
 class _SharePageState extends State<SharePage> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("test"),
+        title: Text("数据共享demo"),
       ),
       body: Column(
         children: <Widget>[
-          _button("InheritWidget", () {
+          _button("InheritWidgetDemo", () {
             Navigator.push(
               context,
               new MaterialPageRoute(
-                builder: (_) => InheritedWidgetTestRoute(),
+                builder: (_) => InheritedWidgetDemo(),
+              ),
+            );
+          }),
+          _button("ProviderDemo", () {
+            Navigator.push(
+              context,
+              new MaterialPageRoute(
+                builder: (_) => ProviderDemo(),
               ),
             );
           }),
@@ -38,7 +46,7 @@ class _SharePageState extends State<SharePage> {
             Navigator.push(
               context,
               new MaterialPageRoute(
-                builder: (_) => InheritedWidgetTestRoute(),
+                builder: (_) => ProviderDemo(),
               ),
             );
           }),
@@ -46,15 +54,7 @@ class _SharePageState extends State<SharePage> {
             Navigator.push(
               context,
               new MaterialPageRoute(
-                builder: (_) => InheritedWidgetTestRoute(),
-              ),
-            );
-          }),
-          _button("InheritWidget", () {
-            Navigator.push(
-              context,
-              new MaterialPageRoute(
-                builder: (_) => InheritedWidgetTestRoute(),
+                builder: (_) => ProviderDemo(),
               ),
             );
           })
