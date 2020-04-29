@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_shop/views/share/InheritWidgetDemo.dart';
+import 'package:flutter_shop/views/share/CustomProviderDemo.dart';
 import 'package:flutter_shop/views/share/ProviderDemo.dart';
 import 'package:flutter_shop/widget/swiper_pagination.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -34,6 +35,14 @@ class _SharePageState extends State<SharePage> {
               ),
             );
           }),
+          _button("CustomProviderDemo", () {
+            Navigator.push(
+              context,
+              new MaterialPageRoute(
+                builder: (_) => CustomProviderDemo(),
+              ),
+            );
+          }),
           _button("ProviderDemo", () {
             Navigator.push(
               context,
@@ -46,15 +55,7 @@ class _SharePageState extends State<SharePage> {
             Navigator.push(
               context,
               new MaterialPageRoute(
-                builder: (_) => ProviderDemo(),
-              ),
-            );
-          }),
-          _button("InheritWidget", () {
-            Navigator.push(
-              context,
-              new MaterialPageRoute(
-                builder: (_) => ProviderDemo(),
+                builder: (_) => CustomProviderDemo(),
               ),
             );
           })

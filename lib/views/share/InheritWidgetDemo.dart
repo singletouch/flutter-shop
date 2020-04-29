@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_shop/widget/swiper_pagination.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:provider/provider.dart';
+
+/*
+ * InheritedWidget 实现的数据共享Demo
+ */
 
 class ShareDataWidget extends InheritedWidget {
   ShareDataWidget({
